@@ -2,7 +2,7 @@
 
 Репозиторий: [https://github.com/IIT-student-apps/autogen-online-shops-rag](https://github.com/IIT-student-apps/autogen-online-shops-rag)
 
-Проект для создания чат-бота с использованием Retrieval-Augmented Generation (RAG) для ответов на вопросы о товарах Ozon.
+Проект для создания чат-бота с использованием Retrieval-Augmented Generation (RAG) для ответов на вопросы о товарах.
 
 ## Структура проекта
 
