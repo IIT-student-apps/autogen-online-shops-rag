@@ -1,4 +1,4 @@
-# Ozon RAG Chat Project
+# RAG Chat Project
 
 Репозиторий: [https://github.com/IIT-student-apps/autogen-online-shops-rag](https://github.com/IIT-student-apps/autogen-online-shops-rag)
 
