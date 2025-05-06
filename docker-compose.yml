@@ -10,6 +10,7 @@ services:
       - .:/app
     environment:
       - EXAMPLE_VAR=example_value
+      - ANONYMIZED_TELEMETRY=False
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
       interval: 10s

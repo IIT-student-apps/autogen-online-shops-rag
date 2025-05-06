@@ -15,6 +15,46 @@
         {
             "role": "assistant",
             "content": "Отзывы о триммере ART&KO неоднозначны.  Часть покупателей отмечают отличное качество за свою цену,  быструю работу и удобство использования. Другие жалуются на быстрый износ батареи,  некачественную упаковку (пришедший использованный товар), а также на то, что триммер выглядит менее внушительно, чем на фото.  В целом, оценки колеблются от 1 до 5 звёзд.\n"
+        },
+        {
+            "role": "user",
+            "content": "Сколько триммер этот стоит?"
+        },
+        {
+            "role": "assistant",
+            "content": "Ошибка при подключении к API чата: HTTPConnectionPool(host='api', port=8000): Max retries exceeded with url: /chat (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7feedfccad90>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+        },
+        {
+            "role": "user",
+            "content": "Сколько триммер этот стоит?"
+        },
+        {
+            "role": "assistant",
+            "content": "Ошибка при подключении к API чата: HTTPConnectionPool(host='api', port=8000): Max retries exceeded with url: /chat (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7feedfcc8f10>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+        },
+        {
+            "role": "user",
+            "content": "Сколько триммер этот стоит?"
+        },
+        {
+            "role": "assistant",
+            "content": "Извините, но информация о цене триммера ART&KO в предоставленных данных отсутствует.  В контексте описаны другие товары.\n"
+        },
+        {
+            "role": "user",
+            "content": "Сколько стоит триммер ART&KO?"
+        },
+        {
+            "role": "assistant",
+            "content": "Ошибка при подключении к API чата: HTTPConnectionPool(host='api', port=8000): Max retries exceeded with url: /chat (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd8f7c1c690>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+        },
+        {
+            "role": "user",
+            "content": "Сколько стоит триммер ART&KO?"
+        },
+        {
+            "role": "assistant",
+            "content": "Триммер ART&KO стоит 20,81 BYN.  https://ozon.by/product/art-ko-trimmer-dlya-borody-i-usov-trimmer-dlya-borody-i-usov-mashinka-dlya-strizhki-volos-1869890216/\n"
         }
     ]
 }

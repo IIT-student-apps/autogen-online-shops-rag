@@ -72,8 +72,11 @@ def get_rag_response(query: str, history: Optional[List[Dict[str, str]]] = None)
     # --- КОНЕЦ ЛОГИРОВАНИЯ ---
     
     if search_results:
-        context_str = "\n\n---\n\n".join(search_results)
-        logging.info(f"Search found {len(search_results)} results.")
+        # ИЗМЕНЕНИЕ: Извлекаем 'document' из каждого словаря перед join
+        documents_texts = [result.get("document", "") for result in search_results if result.get("document")]
+        context_str = "\n\n---\n\n".join(documents_texts)
+        # logging.info(f"Search found {len(search_results)} results.") # Можно убрать или изменить, т.к. search_results - это словари
+        logging.info(f"Formatted context from {len(documents_texts)} retrieved documents.") # Более точный лог
         context_section = f"Контекст:\n{context_str}"
     else:
         logging.warning("Search found NO results.")
@@ -108,6 +111,7 @@ def get_rag_response(query: str, history: Optional[List[Dict[str, str]]] = None)
     )
 
     # Последнее сообщение в истории user_proxy будет ответом эксперта
+    logging.info(f"--- Context being sent to LLM ---\n{final_message}\n--- End of Context ---")
     last_response = user_proxy.last_message(ozon_expert)
     if last_response and isinstance(last_response, dict) and last_response.get("content"):
         logging.info("--- Received response from OzonExpert ---")

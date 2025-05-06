@@ -1,7 +1,7 @@
 import chromadb
 import logging
 from chromadb.utils import embedding_functions
-from typing import List, Dict
+from typing import List, Dict, Tuple, Optional
 from sentence_transformers import SentenceTransformer
 import os
 
@@ -75,16 +75,49 @@ def ingest_data_to_chroma(processed_data: List[Dict[str, str]]):
 
 # Функция поиска (хотя RetrieveUserProxyAgent будет делать это сам)
 # Может быть полезна для отладки
-def search_in_chroma(query_text: str, n_results: int = config.RETRIEVAL_NUM_RESULTS) -> List[str]:
-    """Выполняет поиск в ChromaDB."""
+def search_in_chroma(
+    query_text: str,
+    n_results: int = config.RETRIEVAL_NUM_RESULTS,
+    where_filter: Optional[Dict[str, str]] = None
+) -> List[Dict[str, any]]:
+    """Выполняет поиск в ChromaDB, возвращая документы, метаданные и расстояния, с возможностью фильтрации."""
     try:
-        results = collection.query(
-            query_texts=[query_text],
-            n_results=n_results,
-            include=["documents"] # Получаем только тексты документов
-        )
-        logging.info(f"Retrieved {len(results['documents'][0])} documents for query: '{query_text}'")
-        return results['documents'][0] if results and results['documents'] else []
+        query_params = {
+            "query_texts": [query_text],
+            "n_results": n_results,
+            "include": ["documents", "metadatas", "distances"]
+        }
+        if where_filter:
+            query_params["where"] = where_filter
+            logging.info(f"Applying search filter: {where_filter}")
+
+        results = collection.query(**query_params)
+
+        if not results or not results.get('ids') or not results['ids'][0]:
+            logging.warning(f"No results found for query: '{query_text}'")
+            return []
+
+        # Собираем результаты в более удобный формат
+        output_results = []
+        ids = results['ids'][0]
+        documents = results['documents'][0]
+        metadatas = results['metadatas'][0]
+        distances = results['distances'][0]
+
+        for i, doc_id in enumerate(ids):
+            distance = distances[i]
+            output_results.append({
+                "id": doc_id,
+                "document": documents[i],
+                "metadata": metadatas[i],
+                "distance": distance
+            })
+            # Логируем расстояние для каждого результата
+            logging.debug(f"Retrieved doc ID: {doc_id}, Distance: {distance:.4f}")
+
+        logging.info(f"Retrieved {len(output_results)} documents for query: '{query_text}'")
+        return output_results
+
     except Exception as e:
         logging.error(f"Error during ChromaDB search: {e}", exc_info=True)
         return []

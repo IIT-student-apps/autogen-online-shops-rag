@@ -68,7 +68,7 @@ def ingest_endpoint():
 # Дополнительно: endpoint для проверки работы API
 @app.get("/")
 def read_root():
-    return {"message": "Ozon RAG Chat API is running"}
+    return {"message": "RAG Chat API is running"}
 
 # Если нужно запускать напрямую (хотя обычно используется uvicorn)
 # if __name__ == "__main__":
