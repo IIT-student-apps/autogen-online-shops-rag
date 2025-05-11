@@ -14,7 +14,6 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Это гарантирует, что та же модель используется при индексации и запросе
 chroma_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
     model_name=config.EMBEDDING_MODEL_NAME,
-    # device="cuda" # Раскомментируйте, если есть GPU и хотите его использовать
 )
 
 # Создаем или подключаемся к персистентной базе

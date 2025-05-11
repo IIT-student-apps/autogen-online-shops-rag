@@ -4,10 +4,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# --- Основные Настройки ---
-DATA_FOLDER = "ozon_data"
-CHROMA_PERSIST_DIR = "chroma_db"
-CHROMA_COLLECTION_NAME = "ozon_products_v1"
+# --- Основные Настройки Директорий и Базы Данных ---
+OZON_DATA_FOLDER = os.getenv("OZON_DATA_FOLDER", "data/ozon_data")
+WILDBERRIES_DATA_FOLDER = os.getenv("WILDBERRIES_DATA_FOLDER", "data/wildberries_data")
+CHROMA_PERSIST_DIR = os.getenv("CHROMA_PERSIST_DIR", "chroma_db")
+CHROMA_COLLECTION_NAME = os.getenv("CHROMA_COLLECTION_NAME", "products_collection_v1")
+# --- Конец Основных Настроек ---
 
 # --- Настройки Моделей ---
 EMBEDDING_MODEL_NAME = 'paraphrase-multilingual-mpnet-base-v2'
